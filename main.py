@@ -1,35 +1,33 @@
-import random
 import sys
 
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtWidgets, QtGui, uic
 
 
-class MyWidget(QtWidgets.QWidget):
-    def __init__(self):
+class HomeScreen(QtWidgets.QWidget):
+
+    def __init__(self, *args):
         super().__init__()
+        self.initUI(args)
 
-        self.hello = ["Hallo Welt", "Hei maailma", "Hola Mundo", "Привет мир"]
+    def initUI(self, args):
+        uic.loadUi('ui/HomeScreen.ui', self)
+        self.setWindowTitle('Главное меню')
+        self.planets.clicked.connect(self.openPlanets)
 
-        self.button = QtWidgets.QPushButton("Click me!")
-        self.text = QtWidgets.QLabel("Hello World",
-                                     alignment=QtCore.Qt.AlignCenter)
+    def openPlanets(self):
+        self.close()
+        self.open = Planets(self, self.data)
+        self.open.show()
 
-        self.layout = QtWidgets.QVBoxLayout()
-        self.layout.addWidget(self.text)
-        self.layout.addWidget(self.button)
-        self.setLayout(self.layout)
-
-        self.button.clicked.connect(self.magic)
-
-    def magic(self):
-        self.text.setText(random.choice(self.hello))
+    def paintEvent(self, a0: QtGui.QPaintEvent) -> None:
+        painter = QtGui.QPainter(self)
+        pixmap = QtGui.QPixmap('img/background.jpg')
+        painter.drawPixmap(self.rect(), pixmap)
 
 
-if __name__ == "__main__":
-    app = QtWidgets.QApplication([])
-
-    widget = MyWidget()
-    widget.resize(800, 600)
-    widget.show()
-
-    sys.exit(app.exec_())
+if __name__ == '__main__':
+    app = QtWidgets.QApplication(sys.argv)
+    app.setWindowIcon(QtGui.QIcon('img/icon.ico'))
+    ex = HomeScreen()
+    ex.show()
+    sys.exit(app.exec())
