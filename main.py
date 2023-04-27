@@ -46,7 +46,7 @@ class PlanetsList(QtWidgets.QWidget):
 
     def addPlanet(self):
         self.close()
-        self.open = AddPlanet(self)
+        self.open = AddPlanet(self, None)
         self.open.show()
 
     def updatePlanet(self):
@@ -94,6 +94,70 @@ class PlanetsList(QtWidgets.QWidget):
     def back(self):
         self.close()
         self.open = HomeScreen(self, None)
+        self.open.show()
+
+
+class AddPlanet(QtWidgets.QWidget):
+    def __init__(self, *args):
+        super().__init__()
+        self.initUI()
+
+    def initUI(self):
+        uic.loadUi("ui/addPlanet.ui", self)
+        self.setWindowTitle('Добавление новой планеты')
+
+        self.backButton.clicked.connect(self.back)
+        self.submitButton.clicked.connect(self.add)
+
+    def add(self):
+        con = sqlite3.connect('solar_system_planets.db')
+        cur = con.cursor()
+        cur.execute(
+            f"""INSERT INTO features(
+                planet_id,
+                mass,
+                diameter,
+                density,
+                gravity,
+                escape_v,
+                day,
+                perihelion,
+                aphelion,
+                o_period,
+                orbital_v,
+                tilt,
+                temperature,
+                pressure,
+                magnetic,
+                atmosphere,
+            )
+                VALUES(
+                    '{self.planet_id.text()}',
+                    '{self.mass.text()}',
+                    '{self.diameter.text()}',
+                    '{self.density.text()}',
+                    '{self.gravity.text()}',
+                    '{self.escape_v.text()}',
+                    '{self.day.text()}',
+                    '{self.perihelion.text()}',
+                    '{self.aphelion.text()}',
+                    '{self.o_period.text()}',
+                    '{self.orbital_v.text()}',
+                    '{self.tilt.text()}',
+                    '{self.temperature.text()}',
+                    '{self.pressure.text()}',
+                    '{self.magnetic.text()}',
+                    '{self.atmosphere.text()}',
+            )"""
+        )
+        con.commit()
+        con.close()
+
+        self.back()
+
+    def back(self):
+        self.close()
+        self.open = PlanetsList(self, None)
         self.open.show()
 
 

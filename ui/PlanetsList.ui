@@ -114,8 +114,8 @@
   <widget class="QPushButton" name="deleteButton">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>40</y>
+     <x>250</x>
+     <y>10</y>
      <width>121</width>
      <height>31</height>
     </rect>
