@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1621</width>
+    <height>876</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="alphabetSearchAble">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>40</y>
+     <width>171</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Искать планету по первой букве</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="alphabesearchWidge">
+   <property name="geometry">
+    <rect>
+     <x>820</x>
+     <y>40</y>
+     <width>91</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="backButton">
+   <property name="geometry">
+    <rect>
+     <x>1490</x>
+     <y>10</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>НАЗАД</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="submitButton">
+   <property name="geometry">
+    <rect>
+     <x>920</x>
+     <y>40</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ПОИСК</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="searchWidget">
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>10</y>
+     <width>241</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="searchAble">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>10</y>
+     <width>151</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Искать планету по названию</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="addButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ДОБАВИТЬ ПЛАНЕТУ</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="updateButton">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>10</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ИЗМЕНИТЬ ПЛАНЕТУ</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="deleteButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>УДАЛИТЬ ПЛАНЕТУ</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>1601</width>
+     <height>821</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>1431</width>
+     <height>0</height>
+    </size>
+   </property>
+   <column>
+    <property name="text">
+     <string>Номер</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Название</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Масса</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Диаметр</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Плотность</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Гравитация</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Escape_v</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>День</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Перигелий</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Афелий</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Орбитальный период</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Orbital_v</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Наклон</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Температура</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Магнитный</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Атмосфера</string>
+    </property>
+   </column>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
