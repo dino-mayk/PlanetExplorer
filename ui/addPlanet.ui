@@ -39,7 +39,7 @@
     <string>ПОДТВЕРДИТЬ</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="food_label">
+  <widget class="QLineEdit" name="nameLineEdit">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -49,7 +49,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="nameLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -62,7 +62,7 @@
     <string>Название</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="massLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -75,7 +75,7 @@
     <string>Масса</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="food_label_2">
+  <widget class="QLineEdit" name="massLineEdit">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -85,7 +85,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QLabel" name="diameterLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -95,10 +95,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Название</string>
+    <string>Диаметр</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="food_label_3">
+  <widget class="QLineEdit" name="diameterLineEdit">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -108,7 +108,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_4">
+  <widget class="QLabel" name="densityLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -118,10 +118,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Название</string>
+    <string>Плотность</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="food_label_4">
+  <widget class="QLineEdit" name="densityLineEdit">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -131,7 +131,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QLabel" name="gravityLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -141,10 +141,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Название</string>
+    <string>Гравитация</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="food_label_5">
+  <widget class="QLineEdit" name="gravityLineEdit">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -154,7 +154,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_6">
+  <widget class="QLabel" name="escape_vLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -164,10 +164,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Название</string>
+    <string>Escape_v</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="food_label_6">
+  <widget class="QLineEdit" name="escape_vLineEdit">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -177,7 +177,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_7">
+  <widget class="QLabel" name="dayLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -187,10 +187,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Название</string>
+    <string>День</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="food_label_7">
+  <widget class="QLineEdit" name="dayLineEdit">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -200,7 +200,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_8">
+  <widget class="QLabel" name="perihelionLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -210,10 +210,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Название</string>
+    <string>Перигелий</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="food_label_8">
+  <widget class="QLineEdit" name="perihelionLineEdit">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -223,7 +223,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_9">
+  <widget class="QLabel" name="aphelionLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -233,10 +233,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Название</string>
+    <string>Афелий</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="food_label_9">
+  <widget class="QLineEdit" name="aphelionLineEdit">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -246,7 +246,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_10">
+  <widget class="QLabel" name="o_periodLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -256,10 +256,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Название</string>
+    <string>O_period</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="food_label_10">
+  <widget class="QLineEdit" name="o_periodLineEdit">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -269,7 +269,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_11">
+  <widget class="QLabel" name="orbital_vLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -279,10 +279,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Название</string>
+    <string>Orbital_v</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="food_label_11">
+  <widget class="QLineEdit" name="orbital_vLineEdit">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -292,7 +292,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_12">
+  <widget class="QLabel" name="tiltLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -302,10 +302,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Название</string>
+    <string>Наклон</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="food_label_12">
+  <widget class="QLineEdit" name="tiltLineEdit">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -315,7 +315,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_13">
+  <widget class="QLabel" name="temperatureLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -325,10 +325,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Название</string>
+    <string>Температура</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="food_label_13">
+  <widget class="QLineEdit" name="temperatureLineEdit">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -338,7 +338,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_14">
+  <widget class="QLabel" name="pressureLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -348,10 +348,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Название</string>
+    <string>Давление</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="food_label_14">
+  <widget class="QLineEdit" name="pressureLineEdit">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -361,7 +361,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_15">
+  <widget class="QLabel" name="magneticLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -371,10 +371,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Название</string>
+    <string>Притягательный</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="food_label_15">
+  <widget class="QLineEdit" name="magneticLineEdit">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -384,7 +384,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_16">
+  <widget class="QLabel" name="atmosphereLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -394,10 +394,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Название</string>
+    <string>Атмосфера</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="food_label_16">
+  <widget class="QLineEdit" name="atmosphereLineEdit">
    <property name="geometry">
     <rect>
      <x>170</x>

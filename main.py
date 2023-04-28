@@ -81,9 +81,9 @@ class PlanetsList(QtWidgets.QWidget):
         cur = con.cursor()
 
         if self.searchWidget.text() != '' and self.search.text() != 'Ничего не найдено':
-            self.result = cur.execute(f"""SELECT * FROM planets WHERE name like '{self.searchWidget.text().strip().capitalize()}%'""").fetchall()
+            self.result = cur.execute(f"""SELECT * FROM features WHERE name like '{self.searchWidget.text().strip().capitalize()}%'""").fetchall()
         else:
-            self.result = cur.execute(f"""SELECT * FROM planets WHERE name like '{self.alphabesearchWidge.currentText()}%'""").fetchall()
+            self.result = cur.execute(f"""SELECT * FROM features WHERE name like '{self.alphabesearchWidge.currentText()}%'""").fetchall()
         con.close()
 
         if len(self.result) == 0:
@@ -112,44 +112,12 @@ class AddPlanet(QtWidgets.QWidget):
     def add(self):
         con = sqlite3.connect('solar_system_planets.db')
         cur = con.cursor()
-        cur.execute(
-            f"""INSERT INTO features(
-                planet_id,
-                mass,
-                diameter,
-                density,
-                gravity,
-                escape_v,
-                day,
-                perihelion,
-                aphelion,
-                o_period,
-                orbital_v,
-                tilt,
-                temperature,
-                pressure,
-                magnetic,
-                atmosphere,
-            )
-                VALUES(
-                    '{self.planet_id.text()}',
-                    '{self.mass.text()}',
-                    '{self.diameter.text()}',
-                    '{self.density.text()}',
-                    '{self.gravity.text()}',
-                    '{self.escape_v.text()}',
-                    '{self.day.text()}',
-                    '{self.perihelion.text()}',
-                    '{self.aphelion.text()}',
-                    '{self.o_period.text()}',
-                    '{self.orbital_v.text()}',
-                    '{self.tilt.text()}',
-                    '{self.temperature.text()}',
-                    '{self.pressure.text()}',
-                    '{self.magnetic.text()}',
-                    '{self.atmosphere.text()}',
-            )"""
-        )
+
+        id = int(cur.execute("""SELECT id FROM features""").fetchall()[-1][0]) + 1
+
+        cur.execute(f"""INSERT INTO features(id, planet_id, mass, diameter, density, gravity, escape_v, day, perihelion, aphelion, o_period, orbital_v, tilt, temperature, pressure, magnetic, atmosphere) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""", (id, id, int(self.massLineEdit.text()), int(self.diameterLineEdit.text()), int(self.densityLineEdit.text()), int(self.gravityLineEdit.text()), int(self.escape_vLineEdit.text()), int(self.dayLineEdit.text()), int(self.perihelionLineEdit.text()), int(self.aphelionLineEdit.text()), int(self.o_periodLineEdit.text()), int(self.orbital_vLineEdit.text()), int(self.tiltLineEdit.text()), int(self.temperatureLineEdit.text()), int(self.pressureLineEdit.text()), True, self.atmosphereLineEdit.text(), ))
+        cur.execute(f"""INSERT INTO planets(id, name) VALUES(?, ?)""", (id, self.nameLineEdit.text()))
+
         con.commit()
         con.close()
 
