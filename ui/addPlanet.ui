@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>350</width>
-    <height>539</height>
+    <height>571</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <widget class="QPushButton" name="backButton">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>220</x>
      <y>490</y>
      <width>121</width>
      <height>41</height>
@@ -164,7 +164,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Escape_v</string>
+    <string>Скорость убегания</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="escape_vLineEdit">
@@ -251,12 +251,12 @@
     <rect>
      <x>10</x>
      <y>280</y>
-     <width>121</width>
+     <width>151</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>O_period</string>
+    <string>Период обращения по орбите</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="o_periodLineEdit">
@@ -274,12 +274,12 @@
     <rect>
      <x>10</x>
      <y>310</y>
-     <width>121</width>
+     <width>151</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>Orbital_v</string>
+    <string>Орбитальная скорость</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="orbital_vLineEdit">
@@ -361,29 +361,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="magneticLabel">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>430</y>
-     <width>121</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Притягательный</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="magneticLineEdit">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>430</y>
-     <width>171</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="atmosphereLabel">
    <property name="geometry">
     <rect>
@@ -405,6 +382,19 @@
      <width>171</width>
      <height>20</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>430</y>
+     <width>321</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Является ли планета магнитной</string>
    </property>
   </widget>
  </widget>
