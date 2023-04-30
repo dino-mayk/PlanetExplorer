@@ -59,7 +59,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Название</string>
+    <string>Название(с большой)</string>
    </property>
   </widget>
   <widget class="QComboBox" name="planetIdQComboBox">
