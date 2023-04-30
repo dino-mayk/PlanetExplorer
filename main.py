@@ -191,7 +191,7 @@ class AddPlanet(QtWidgets.QWidget):
 
         try:
             cur.execute(f"""INSERT INTO features(id, planet_id, mass, diameter, density, gravity, escape_v, day, perihelion, aphelion, o_period, orbital_v, tilt, temperature, pressure, magnetic, atmosphere) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""", (id, id, self.massLineEdit.text(), self.diameterLineEdit.text(), self.densityLineEdit.text(), self.gravityLineEdit.text(), self.escape_vLineEdit.text(), self.dayLineEdit.text(), self.perihelionLineEdit.text(), self.aphelionLineEdit.text(), self.o_periodLineEdit.text(), self.orbital_vLineEdit.text(), self.tiltLineEdit.text(), self.temperatureLineEdit.text(), self.pressureLineEdit.text(), self.magneticcheckBox.isChecked(), self.atmosphereLineEdit.text(), ))
-            cur.execute(f"""INSERT INTO planets(id, name) VALUES(?, ?)""", (id, self.nameLineEdit.text()))
+            cur.execute(f"""INSERT INTO planets(id, name) VALUES(?, ?)""", (id, self.nameLineEdit.text().capitalize()))
             con.commit()
             con.close()
             self.back()
@@ -233,7 +233,7 @@ class UpdatePlanet(QtWidgets.QWidget):
             cur = con.cursor()
 
             cur.execute("""UPDATE features SET id=?, planet_id=?, mass=?, diameter=?, density=?, gravity=?, escape_v=?, day=?, perihelion=?, aphelion=?, o_period=?, orbital_v=?, tilt=?, temperature=?, pressure=?, magnetic=?, atmosphere=? WHERE id=?""", (self.id, self.id, self.massLineEdit.text(), self.diameterLineEdit.text(), self.densityLineEdit.text(), self.gravityLineEdit.text(), self.escape_vLineEdit.text(), self.dayLineEdit.text(), self.perihelionLineEdit.text(), self.aphelionLineEdit.text(), self.o_periodLineEdit.text(), self.orbital_vLineEdit.text(), self.tiltLineEdit.text(), self.temperatureLineEdit.text(), self.pressureLineEdit.text(), self.magneticcheckBox.isChecked(), self.atmosphereLineEdit.text(), self.id))
-            cur.execute(f"""UPDATE planets SET name=? WHERE id=?""", (self.nameLineEdit.text(), self.id, ))
+            cur.execute(f"""UPDATE planets SET name=? WHERE id=?""", (self.nameLineEdit.text().capitalize(), self.id, ))
 
             con.commit()
             con.close()
@@ -274,11 +274,11 @@ class SatellitesList(QtWidgets.QWidget):
     def updateSatellite(self):
         if len(self.result) > 0:
             number, ok_pressed = QtWidgets.QInputDialog.getInt(
-                self, "Введите номер строки планеты", "Введите номер строки планеты, которую хотите изменить",
+                self, "Введите номер строки спутника", "Введите номер строки спутника, которого хотите изменить",
                 1, 1, len(self.result), 1)
             if ok_pressed:
                 self.close()
-                self.open = UpdatePlanet(self, self.result[number - 1][1])
+                self.open = UpdateSatellite(self, self.result[number - 1][0])
                 self.open.show()
 
     def deleteSatellite(self):
@@ -381,7 +381,7 @@ class AddSatellite(QtWidgets.QWidget):
         id = int(cur.execute("""SELECT id FROM satellites""").fetchall()[-1][0]) + 1
 
         try:
-            cur.execute(f"""INSERT INTO satellites(id, planet_id, name, date) VALUES(?, ?, ?, ?)""", (id, self.planetIdQComboBox.currentText(), self.nameLineEdit.text(), self.dateLineEdit.text()))
+            cur.execute(f"""INSERT INTO satellites(id, planet_id, name, date) VALUES(?, ?, ?, ?)""", (id, self.planetIdQComboBox.currentText(), self.nameLineEdit.text().capitalize(), self.dateLineEdit.text()))
             con.commit()
             con.close()
             self.back()
@@ -389,6 +389,55 @@ class AddSatellite(QtWidgets.QWidget):
             self.error.setStyleSheet(
                 "QStatusBar{padding-left:8px;background:rgb(255,0,0);color:black;font-weight:bold;}"
             )
+            self.error.showMessage('Вы ввели некорректные данные')
+
+    def back(self):
+        self.close()
+        self.open = SatellitesList(self, None)
+        self.open.show()
+
+
+class UpdateSatellite(QtWidgets.QWidget):
+    def __init__(self, *args):
+        super().__init__()
+        self.initUI()
+
+        self.id = args[-1]
+
+    def initUI(self):
+        uic.loadUi('ui/addOrUpdateSatellite.ui', self)
+        self.setWindowTitle('Изменение спутника')
+        self.setFixedSize(350, 170)
+        self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, False)
+
+        self.backButton.clicked.connect(self.back)
+        self.submitButton.clicked.connect(self.update)
+
+        self.error = QtWidgets.QStatusBar(self)
+        self.error.move(0, 150)
+        self.error.resize(500, 20)
+
+        con = sqlite3.connect('solar_system_planets.db')
+        cur = con.cursor()
+        self.result = cur.execute("""SELECT id FROM planets""").fetchall()
+        self.result = [str(planet[0]) for planet in self.result]
+        con.close()
+
+        self.planetIdQComboBox.addItems(self.result)
+
+    def update(self):
+        try:
+            con = sqlite3.connect('solar_system_planets.db')
+            cur = con.cursor()
+
+            cur.execute(f"""UPDATE satellites SET planet_id=?, name=?, date=? WHERE id=?""", (self.planetIdQComboBox.currentText(), self.nameLineEdit.text().capitalize(), self.dateLineEdit.text(), self.id))
+
+            con.commit()
+            con.close()
+            self.back()
+
+        except Exception:
+            self.error.setStyleSheet("QStatusBar{padding-left:8px;background:rgb(255,0,0);color:black;font-weight:bold;}")
             self.error.showMessage('Вы ввели некорректные данные')
 
     def back(self):

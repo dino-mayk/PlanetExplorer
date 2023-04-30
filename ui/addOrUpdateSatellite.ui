@@ -105,7 +105,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Дата(число)</string>
+    <string>Дата</string>
    </property>
   </widget>
  </widget>
