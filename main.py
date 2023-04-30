@@ -285,8 +285,8 @@ class SatellitesList(QtWidgets.QWidget):
         if len(self.result) > 0:
             number, ok_pressed = QtWidgets.QInputDialog.getInt(
                 self,
-                "Введите номер строки планеты",
-                "Введите номер строки планеты, которую хотите удалить",
+                "Введите номер строки спутника",
+                "Введите номер строки спутника, которого хотите удалить",
                 1,
                 1,
                 len(self.result),
@@ -297,9 +297,7 @@ class SatellitesList(QtWidgets.QWidget):
                 try:
                     con = sqlite3.connect('solar_system_planets.db')
                     cur = con.cursor()
-                    cur.execute(f"""DELETE FROM features WHERE id = {self.result[number - 1][1]}""")
-                    cur.execute(f"""DELETE FROM planets WHERE id = {self.result[number - 1][1]}""")
-                    cur.execute(f"""DELETE FROM satellites WHERE planet_id = {self.result[number - 1][1]}""")
+                    cur.execute(f"""DELETE FROM satellites WHERE id = {self.result[number - 1][0]}""")
                     con.commit()
                     con.close()
                     self.updateResults()
