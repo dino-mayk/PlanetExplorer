@@ -1,7 +1,7 @@
 import sqlite3
 import sys
 
-from PyQt5 import QtGui, QtWidgets, uic, QtCore
+from PyQt5 import QtCore, QtGui, QtWidgets, uic
 
 
 class HomeScreen(QtWidgets.QWidget):
@@ -52,19 +52,19 @@ class PlanetsList(QtWidgets.QWidget):
     def updatePlanet(self):
         if len(self.result) > 0:
             number, ok_pressed = QtWidgets.QInputDialog.getInt(
-                self, "Введите номер планеты", "Введите номер планеты, которую хотите изменить",
+                self, "Введите номер строки планеты", "Введите номер строки планеты, которую хотите изменить",
                 1, 1, len(self.result), 1)
             if ok_pressed:
                 self.close()
-                self.open = updatePlanet(self, (self.data, self.search.text(), self.abc.currentText(), number))
+                self.open = UpdatePlanet(self, self.result[number - 1][1])
                 self.open.show()
 
     def deletePlanet(self):
         if len(self.result) > 0:
             number, ok_pressed = QtWidgets.QInputDialog.getInt(
                 self,
-                "Введите номер планеты",
-                "Введите номер планеты,которую хотите удалить",
+                "Введите номер строки планеты",
+                "Введите номер строки планеты, которую хотите удалить",
                 1,
                 1,
                 len(self.result),
@@ -72,13 +72,17 @@ class PlanetsList(QtWidgets.QWidget):
             )
 
             if ok_pressed:
-                con = sqlite3.connect('solar_system_planets.db')
-                cur = con.cursor()
-                cur.execute(f"""DELETE FROM features WHERE id = {self.result[number - 1][1]}""")
-                cur.execute(f"""DELETE FROM planets WHERE id = {self.result[number - 1][1]}""")
-                cur.execute(f"""DELETE FROM satellites WHERE planet_id = {self.result[number - 1][1]}""")
-                con.commit()
-                con.close()
+                try:
+                    con = sqlite3.connect('solar_system_planets.db')
+                    cur = con.cursor()
+                    cur.execute(f"""DELETE FROM features WHERE id = {self.result[number - 1][1]}""")
+                    cur.execute(f"""DELETE FROM planets WHERE id = {self.result[number - 1][1]}""")
+                    cur.execute(f"""DELETE FROM satellites WHERE planet_id = {self.result[number - 1][1]}""")
+                    con.commit()
+                    con.close()
+                    self.updateResults()
+                except Exception:
+                    pass
 
     def paintEvent(self, a0: QtGui.QPaintEvent) -> None:
         painter = QtGui.QPainter(self)
@@ -119,20 +123,22 @@ class PlanetsList(QtWidgets.QWidget):
             self.tableWidget.setHorizontalHeaderLabels(
                 [
                     'Название',
-                    'Номер',
+                    'Id',
+                    'Номер планеты',
                     'Масса',
+                    'Диаметр',
                     'Плотность',
                     'Гравитация',
                     'Скорость убегания',
                     'День',
                     'Перигелий',
                     'Афелий',
-                    'Период обращения по орбите',
-                    'Орбитальная скорость',
+                    'Период',
+                    'Скорость орбиты',
                     'Наклон',
                     'Температура',
                     'Давление',
-                    'Магнитный',
+                    'Магнитный(1-да, 0-нет)',
                     'Атмосфера',
                 ]
             )
@@ -160,8 +166,10 @@ class AddPlanet(QtWidgets.QWidget):
         self.initUI()
 
     def initUI(self):
-        uic.loadUi("ui/addPlanet.ui", self)
+        uic.loadUi('ui/addOrUpdatePlanet.ui', self)
         self.setWindowTitle('Добавление новой планеты')
+        self.setFixedSize(350, 570)
+        self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, False)
 
         self.backButton.clicked.connect(self.back)
         self.submitButton.clicked.connect(self.add)
@@ -177,7 +185,7 @@ class AddPlanet(QtWidgets.QWidget):
         id = int(cur.execute("""SELECT id FROM features""").fetchall()[-1][0]) + 1
 
         try:
-            cur.execute(f"""INSERT INTO features(id, planet_id, mass, diameter, density, gravity, escape_v, day, perihelion, aphelion, o_period, orbital_v, tilt, temperature, pressure, magnetic, atmosphere) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""", (id, id, int(self.massLineEdit.text()), int(self.diameterLineEdit.text()), int(self.densityLineEdit.text()), int(self.gravityLineEdit.text()), int(self.escape_vLineEdit.text()), int(self.dayLineEdit.text()), int(self.perihelionLineEdit.text()), int(self.aphelionLineEdit.text()), int(self.o_periodLineEdit.text()), int(self.orbital_vLineEdit.text()), int(self.tiltLineEdit.text()), int(self.temperatureLineEdit.text()), int(self.pressureLineEdit.text()), True, self.atmosphereLineEdit.text(), ))
+            cur.execute(f"""INSERT INTO features(id, planet_id, mass, diameter, density, gravity, escape_v, day, perihelion, aphelion, o_period, orbital_v, tilt, temperature, pressure, magnetic, atmosphere) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""", (id, id, self.massLineEdit.text(), self.diameterLineEdit.text(), self.densityLineEdit.text(), self.gravityLineEdit.text(), self.escape_vLineEdit.text(), self.dayLineEdit.text(), self.perihelionLineEdit.text(), self.aphelionLineEdit.text(), self.o_periodLineEdit.text(), self.orbital_vLineEdit.text(), self.tiltLineEdit.text(), self.temperatureLineEdit.text(), self.pressureLineEdit.text(), self.magneticcheckBox.isChecked(), self.atmosphereLineEdit.text(), ))
             cur.execute(f"""INSERT INTO planets(id, name) VALUES(?, ?)""", (id, self.nameLineEdit.text()))
             con.commit()
             con.close()
@@ -186,6 +194,52 @@ class AddPlanet(QtWidgets.QWidget):
             self.error.setStyleSheet(
                 "QStatusBar{padding-left:8px;background:rgb(255,0,0);color:black;font-weight:bold;}"
             )
+            self.error.showMessage('Вы ввели некорректные данные')
+
+    def back(self):
+        self.close()
+        self.open = PlanetsList(self, None)
+        self.open.show()
+
+
+class UpdatePlanet(QtWidgets.QWidget):
+    def __init__(self, *args):
+        super().__init__()
+        self.initUI()
+
+        self.id = args[-1]
+
+    def initUI(self):
+        uic.loadUi('ui/addOrUpdatePlanet.ui', self)
+        self.setWindowTitle('Изменение планеты')
+        self.setFixedSize(350, 570)
+        self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, False)
+
+        self.backButton.clicked.connect(self.back)
+        self.submitButton.clicked.connect(self.update)
+
+        self.error = QtWidgets.QStatusBar(self)
+        self.error.move(0, 550)
+        self.error.resize(500, 20)
+
+    def update(self):
+        con = sqlite3.connect('solar_system_planets.db')
+        cur = con.cursor()
+
+        cur.execute("""UPDATE features SET id=?, planet_id=?, mass=?, diameter=?, density=?, gravity=?, escape_v=?, day=?, perihelion=?, aphelion=?, o_period=?, orbital_v=?, tilt=?, temperature=?, pressure=?, magnetic=?, atmosphere=? WHERE id=?""", (self.id, self.id, self.massLineEdit.text(), self.diameterLineEdit.text(), self.densityLineEdit.text(), self.gravityLineEdit.text(), self.escape_vLineEdit.text(), self.dayLineEdit.text(), self.perihelionLineEdit.text(), self.aphelionLineEdit.text(), self.o_periodLineEdit.text(), self.orbital_vLineEdit.text(), self.tiltLineEdit.text(), self.temperatureLineEdit.text(), self.pressureLineEdit.text(), self.magneticcheckBox.isChecked(), self.atmosphereLineEdit.text(), self.id))
+        cur.execute(f"""UPDATE planets SET name=? WHERE id=?""", (self.nameLineEdit.text(), self.id, ))
+
+        con.commit()
+        con.close()
+        self.back()
+
+        try:
+
+            pass
+            
+
+        except Exception:
+            self.error.setStyleSheet("QStatusBar{padding-left:8px;background:rgb(255,0,0);color:black;font-weight:bold;}")
             self.error.showMessage('Вы ввели некорректные данные')
 
     def back(self):
