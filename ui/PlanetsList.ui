@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1890</width>
+    <height>876</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="alphabetSearchAble">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>40</y>
+     <width>171</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Искать планету по первой букве</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="alphabesearchWidget">
+   <property name="geometry">
+    <rect>
+     <x>960</x>
+     <y>40</y>
+     <width>91</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>А</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Б</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>В</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Г</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Д</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Е</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Ё</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Ж</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>З</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>И</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Й</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>К</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Л</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>М</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Н</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>О</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>П</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Р</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>С</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Т</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>У</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Ф</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Х</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Ц</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Ч</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Ш</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Щ</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Ъ</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Ы</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Ь</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Э</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Ю</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Я</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QPushButton" name="backButton">
+   <property name="geometry">
+    <rect>
+     <x>1760</x>
+     <y>10</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>НАЗАД</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="submitButton">
+   <property name="geometry">
+    <rect>
+     <x>1060</x>
+     <y>40</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ПОИСК</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="searchWidget">
+   <property name="geometry">
+    <rect>
+     <x>940</x>
+     <y>10</y>
+     <width>241</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="searchAble">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>10</y>
+     <width>151</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Искать планету по названию</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="addButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ДОБАВИТЬ ПЛАНЕТУ</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="updateButton">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>10</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ИЗМЕНИТЬ ПЛАНЕТУ</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="deleteButton">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>10</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>УДАЛИТЬ ПЛАНЕТУ</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>81</y>
+     <width>1961</width>
+     <height>821</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
